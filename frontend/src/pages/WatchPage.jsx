@@ -204,7 +204,7 @@ const WatchPage = () => {
             <h3 className="text-3xl font-bold mb-4">Similar Movies/Tv Show</h3>
 
             <div
-              className="flex overflow-x-scroll scrollbar-hide gap-4 pb-4 group"
+              className="flex overflow-x-scroll scrollbar-none gap-4 pb-4 group"
               ref={sliderRef}
             >
               {similarContent.map((content) => {
