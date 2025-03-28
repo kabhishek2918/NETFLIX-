@@ -4,6 +4,7 @@ console.log("Loaded ENV:", process.env);
 import express from "express";
 import cookieParser from "cookie-parser";
 import path from "path";
+import cors from "cors";
 
 import authRoutes from "./routes/auth.route.js";
 import movieRoutes from "./routes/movie.route.js";
@@ -17,6 +18,15 @@ import { protectRoute } from "./middleware/protectRoute.js";
 const app = express();
 const PORT = ENV_VARS.PORT;
 const __dirname = path.resolve();
+
+// CORS CONFIG
+
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://netflix-9w7d.vercel.app/"],
+    credentials: true,
+  })
+);
 
 // Middlewares
 app.use(express.json());
