@@ -2,6 +2,11 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { create } from "zustand";
 
+// SET axios config HERE
+
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
+axios.defaults.withCredentials = true;
+
 export const useAuthStore = create((set) => ({
   user: null,
   isSigningUp: false,
