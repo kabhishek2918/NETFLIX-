@@ -50,10 +50,10 @@ process.on("uncaughtException", (err) => {
 connectDB()
   .then(() => {
     app.listen(PORT, () => {
-      console.log("✅ Server started at http://localhost:" + PORT);
+      console.log(" Server started at http://localhost:" + PORT);
     });
   })
   .catch((err) => {
-    console.error("❌ Failed to connect to database", err);
+    console.error("Failed to connect to database", err);
     process.exit(1);
   });
