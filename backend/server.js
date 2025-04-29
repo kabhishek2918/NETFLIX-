@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
 console.log("Loaded ENV:", process.env);
-
 import express from "express";
 import cookieParser from "cookie-parser";
 import path from "path";
@@ -16,9 +15,7 @@ import { connectDB } from "./config/db.js";
 import { protectRoute } from "./middleware/protectRoute.js";
 
 const app = express();
-
-// Ensure a fallback port if ENV_VARS.PORT is not provided
-const PORT = ENV_VARS.PORT || 3000; // Use 3000 as fallback
+const PORT = ENV_VARS.PORT;
 const __dirname = path.resolve();
 
 // Middlewares
@@ -52,9 +49,8 @@ process.on("uncaughtException", (err) => {
 // DB then Server
 connectDB()
   .then(() => {
-    // Expose the app to all network interfaces (0.0.0.0)
-    app.listen(PORT, "0.0.0.0", () => {
-      console.log(`Server started at http://localhost:${PORT}`);
+    app.listen(PORT, () => {
+      console.log(" Server started at http://localhost:" + PORT);
     });
   })
   .catch((err) => {
