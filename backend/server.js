@@ -1,6 +1,5 @@
 import dotenv from "dotenv";
 dotenv.config();
-console.log("Loaded ENV:", process.env);
 import express from "express";
 import cookieParser from "cookie-parser";
 import path from "path";
