@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { ArrowRight, Clapperboard, Compass, Search, Star } from "lucide-react";
 
 const AuthScreen = () => {
   const [email, setEmail] = useState("");
@@ -8,202 +8,77 @@ const AuthScreen = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    navigate("/signup?email=" + email);
+    navigate("/signup?email=" + encodeURIComponent(email));
   };
 
   return (
-    <div className="hero-bg relative">
-      {/* Navbar */}
-      <header className="max-w-6xl mx-auto flex items-center justify-between p-4 pb-10">
-        <img
-          src="/netflix-logo.png"
-          alt="Netflix Logo"
-          className="w-32 md:w-52"
-        />
-        <Link to={"/login"} className="text-white bg-red-600 py-1 px-2 rounded">
-          Sign In
-        </Link>
-      </header>
+    <main className="min-h-screen bg-[#090909] text-white">
+      <section className="relative isolate overflow-hidden">
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_top_right,_rgba(229,9,20,0.22),_transparent_55%)]" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/20 via-[#090909]/30 to-[#090909]" />
+        <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-6 md:px-10">
+          <Link to="/" className="flex items-center gap-2" aria-label="Cineora home">
+            <Clapperboard className="h-8 w-8 text-red-500" />
+            <span className="text-2xl font-black tracking-[0.12em]">CINEORA</span>
+          </Link>
+          <Link to="/login" className="rounded-md bg-red-600 px-5 py-2 text-sm font-semibold transition hover:bg-red-700">
+            Sign in
+          </Link>
+        </header>
 
-      {/* hero section */}
-      <div className="flex flex-col items-center justify-center text-center py-40 text-white max-w-6xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Unlimited movies, TV shows, and more
-        </h1>
-        <p className="text-lg mb-4">Watch anywhere. Cancel anytime.</p>
-        <p className="mb-4">
-          Ready to watch? Enter your email to create or restart your membership.
-        </p>
-
-        <form
-          className="flex flex-col md:flex-row gap-4 w-1/2"
-          onSubmit={handleFormSubmit}
-        >
-          <input
-            type="email"
-            placeholder="Email address"
-            className="p-2 rounded flex-1 bg-black/80 border border-gray-700"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <button className="bg-red-600 text-xl lg:text-2xl px-2 lg:px-6 py-1 md:py-2 rounded flex justify-center items-center">
-            Get Started
-            <ChevronRight className="size-8 md:size-10" />
-          </button>
-        </form>
-      </div>
-
-      {/* separator */}
-      <div className="h-2 w-full bg-[#232323]" aria-hidden="true" />
-
-      {/* 1st section */}
-      <div className="py-10 bg-black text-white">
-        <div className="flex max-w-6xl mx-auto items-center justify-center md:flex-row flex-col px-4 md:px-2">
-          {/* left side */}
-          <div className="flex-1 text-center md:text-left">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-              Enjoy on your TV
-            </h2>
-            <p className="text-lg md:text-xl">
-              Watch on Smart TVs, PlayStation, Xbox, Chromecast, Apple TV,
-              Blu-ray players, and more.
-            </p>
-          </div>
-          {/* right side */}
-          <div className="flex-1 relative">
-            <img src="/tv.png" alt="Tv image" className="mt-4 z-20 relative" />
-            <video
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-1/2 z-10"
-              playsInline
-              autoPlay={true}
-              muted
-              loop
-            >
-              <source src="/hero-vid.m4v" type="video/mp4" />
-            </video>
-          </div>
-        </div>
-      </div>
-
-      {/* separator */}
-      <div className="h-2 w-full bg-[#232323]" aria-hidden="true" />
-
-      {/* 2nd section */}
-      <div className="py-10 bg-black text-white">
-        <div className="flex max-w-6xl mx-auto items-center justify-center md:flex-row flex-col-reverse px-4 md:px-2">
-          {/* left side */}
-          <div className="flex-1 relative">
-            <div className="relative">
-              <img
-                src="/stranger-things-lg.png"
-                alt="Stranger Things img"
-                className="mt-4"
-              />
-
-              <div
-                className="flex items-center gap-2 absolute bottom-5 left-1/2 -translate-x-1/2 bg-black
-              w-3/4 lg:w-1/2 h-24 border border-slate-500 rounded-md px-2
-              "
-              >
-                <img
-                  src="/stranger-things-sm.png"
-                  alt="image"
-                  className="h-full"
-                />
-                <div className=" flex justify-between items-center w-full">
-                  <div className="flex flex-col gap-0">
-                    <span className="text-md lg:text-lg font-bold">
-                      Stranger Things
-                    </span>
-                    <span className="text-sm text-blue-500">
-                      Downloading...
-                    </span>
-                  </div>
-
-                  <img src="/download-icon.gif" alt="" className="h-12" />
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* right side */}
-
-          <div className="flex-1 md:text-left text-center">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-balance">
-              Download your shows to watch offline
-            </h2>
-            <p className="text-lg md:text-xl">
-              Save your favorites easily and always have something to watch.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* separator */}
-
-      <div className="h-2 w-full bg-[#232323]" aria-hidden="true" />
-
-      {/* 3rd section */}
-      <div className="py-10 bg-black text-white">
-        <div className="flex max-w-6xl mx-auto items-center justify-center md:flex-row flex-col px-4 md:px-2">
-          {/* left side */}
-          <div className="flex-1 text-center md:text-left">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-              Watch everywhere
-            </h2>
-            <p className="text-lg md:text-xl">
-              Stream unlimited movies and TV shows on your phone, tablet,
-              laptop, and TV.
-            </p>
-          </div>
-
-          {/* right side */}
-          <div className="flex-1 relative overflow-hidden">
-            <img
-              src="/device-pile.png"
-              alt="Device image"
-              className="mt-4 z-20 relative"
+        <div className="mx-auto flex min-h-[620px] max-w-5xl flex-col items-center justify-center px-5 pb-24 pt-16 text-center md:min-h-[680px]">
+          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-red-300">
+            <Star className="h-3.5 w-3.5" /> Your entertainment compass
+          </span>
+          <h1 className="max-w-4xl text-4xl font-black leading-tight tracking-tight sm:text-5xl md:text-7xl">
+            Find your next
+            <span className="block text-red-500">favourite story.</span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-base leading-7 text-zinc-300 md:text-xl">
+            Explore movies and series, discover hidden gems, read reviews, and find out where to watch.
+          </p>
+          <form onSubmit={handleFormSubmit} className="mt-9 flex w-full max-w-xl flex-col gap-3 sm:flex-row">
+            <input
+              type="email"
+              required
+              placeholder="Enter your email address"
+              aria-label="Email address"
+              className="min-w-0 flex-1 rounded-md border border-white/20 bg-black/60 px-4 py-3.5 text-white outline-none placeholder:text-zinc-500 focus:border-red-500"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <video
-              className="absolute top-2 left-1/2 -translate-x-1/2  h-4/6 z-10
-               max-w-[63%] 
-              "
-              playsInline
-              autoPlay={true}
-              muted
-              loop
-            >
-              <source src="/video-devices.m4v" type="video/mp4" />
-            </video>
+            <button className="inline-flex items-center justify-center gap-2 rounded-md bg-red-600 px-6 py-3.5 font-bold transition hover:bg-red-700">
+              Get started <ArrowRight className="h-5 w-5" />
+            </button>
+          </form>
+          <p className="mt-4 text-sm text-zinc-500">Create a free account to build your personal watchlist.</p>
+        </div>
+      </section>
+
+      <section className="border-t border-white/10 bg-[#101010] px-5 py-16 md:px-10">
+        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-3">
+          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-7">
+            <Search className="mb-5 h-8 w-8 text-red-500" />
+            <h2 className="text-xl font-bold">Discover more</h2>
+            <p className="mt-3 leading-7 text-zinc-400">Explore popular titles, genres, and recommendations to find something worth watching.</p>
+          </div>
+          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-7">
+            <Compass className="mb-5 h-8 w-8 text-red-500" />
+            <h2 className="text-xl font-bold">Know where to watch</h2>
+            <p className="mt-3 leading-7 text-zinc-400">Find official availability information and links to authorised streaming services.</p>
+          </div>
+          <div className="rounded-xl border border-white/10 bg-white/[0.03] p-7">
+            <Star className="mb-5 h-8 w-8 text-red-500" />
+            <h2 className="text-xl font-bold">Make it yours</h2>
+            <p className="mt-3 leading-7 text-zinc-400">Keep a personal watchlist and explore entertainment picked around your interests.</p>
           </div>
         </div>
-      </div>
-
-      <div className="h-2 w-full bg-[#232323]" aria-hidden="true" />
-
-      {/* 4th section*/}
-      <div className="py-10 bg-black text-white">
-        <div
-          className="flex max-w-6xl mx-auto items-center justify-center flex-col-reverse md:flex-row
-           px-4 md:px-2
-        "
-        >
-          {/* left */}
-          <div className="flex-1 relative">
-            <img src="/kids.png" alt="Enjoy on your TV" className="mt-4" />
-          </div>
-          {/* right */}
-          <div className="flex-1 text-center md:text-left">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-              Create profiles for kids
-            </h2>
-            <p className="text-lg md:text-xl">
-              Send kids on adventures with their favorite characters in a space
-              made just for them—free with your membership.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+      </section>
+      <footer className="border-t border-white/10 px-5 py-8 text-center text-sm text-zinc-500">
+        © {new Date().getFullYear()} Cineora. Discover your next favourite story.
+      </footer>
+    </main>
   );
 };
+
 export default AuthScreen;
